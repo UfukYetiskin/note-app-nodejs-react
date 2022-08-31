@@ -16,6 +16,7 @@ const App = () => {
           Learn React
         </a>
       </header>
+      Çalışıyorr
     </div>
   );
 }
