@@ -1,6 +1,6 @@
 import './App.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { increase } from './redux/taskSlice';
+import { increase, removeNote } from './redux/taskSlice';
 import {useEffect} from "react"
 import styled from "styled-components"
 import Task from './components/Task';
@@ -14,7 +14,6 @@ const App = () => {
   useEffect(()=> {
 
   }, [dispatch])
-
 
   const Header = styled.h1`
     color : white;
@@ -31,8 +30,12 @@ const App = () => {
     width : 90%;
     border : 1px solid white;
     margin-bottom : 2%;
-    border-radius  : 10px 
+    border-radius  : 10px;
+    display : flex;
+    flex-direction : row;
+    justify-content : space-between;
   `
+
   return (
     <div className="App">
       <header className="App-header">
@@ -48,9 +51,14 @@ const App = () => {
       <Ul>
         {items && items.map(item => (
           <Li key={item.id}>
-            <h2>{item.title}</h2>
-            <hr></hr>
-            <h3>{item.text}</h3>
+            <div style={{width : "90%"}}>
+              <h2>{item.title}</h2>
+              <hr></hr>
+              <h3>{item.text}</h3>
+            </div>
+            <div style={{width : "5%", margin : "auto 0"}}>
+              <button onClick={() => dispatch(removeNote(item.id))}>X</button>
+            </div>
           </Li>
         ))}
       </Ul>

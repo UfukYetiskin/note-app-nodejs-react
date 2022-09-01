@@ -33,6 +33,12 @@ const taskSlice = createSlice({
         },
         addNote  :(state, action) => {
             state.items.push(action.payload)
+        },
+        removeNote : (state, action) => {
+            console.log(action.payload)
+            const index = state.items.findIndex((item) => item.id === action.payload)
+            console.log(index)
+            state.items.splice(index, 1)
         }
     },
     extraReducers : {
@@ -49,5 +55,5 @@ const taskSlice = createSlice({
     }
 });
 
-export const {increase, addNote} = taskSlice.actions;
+export const {increase, addNote, removeNote} = taskSlice.actions;
 export default taskSlice.reducer;
