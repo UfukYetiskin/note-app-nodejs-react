@@ -22,7 +22,7 @@ const taskSlice = createSlice({
                 id : "12ajhsdasda1123",
                 title : "Default Title",
                 text  :"Default Text",
-            }
+            },
         ],
         count : 0,
         status : "idle"
@@ -31,6 +31,9 @@ const taskSlice = createSlice({
         increase: (state) => {
             state.count += 1;
         },
+        addNote  :(state, action) => {
+            state.items.push(action.payload)
+        }
     },
     extraReducers : {
         [fetchTaskThunk.pending] : (state, action) => {
@@ -46,5 +49,5 @@ const taskSlice = createSlice({
     }
 });
 
-export const {increase} = taskSlice.actions;
+export const {increase, addNote} = taskSlice.actions;
 export default taskSlice.reducer;
